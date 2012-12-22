@@ -131,6 +131,7 @@
  *    instead and catching it manually.
  */
 
+namespace mex {
 //Enabled only for non-exception TYPEs (don't facilitate Expecting an exception).
 template<typename TYPE,
   typename ENABLE =
@@ -326,6 +327,8 @@ Expected<TYPE, ENABLE> Expected<TYPE, ENABLE>::fromCode(FUNC func) {
     return fromException();
   }
 }
+
+} //Namespace mex
 
 #define EXPECTED_FROM_FUNCTION(FUNCTION)                                     \
   Expected<decltype(FUNCTION)>::fromCode([&]()->Expected<decltype(FUNCTION)> \

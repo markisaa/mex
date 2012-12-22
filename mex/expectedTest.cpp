@@ -7,6 +7,8 @@
 
 using namespace std;
 
+using mex::Expected;
+
 //Demo function that checks if a string could be converted to an int via stoi
 //without throwing an exception.
 //Makes use of all three implicit 'basic' constructors. The use of the
