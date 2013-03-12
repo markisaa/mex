@@ -63,8 +63,8 @@ int main() {
 #define MEX_UT_CONCAT_(a, b) a##b
 #define MEX_UT_CONCAT(a, b) MEX_UT_CONCAT_(a, b)
 #define MEX_UNIT_TEST \
-  static bool MEX_UT_CONCAT(UT,__LINE__) = unittest::registerUnitTest([](){
-#define MEX_END_UNIT_TEST });
+  namespace mex_ut { static bool MEX_UT_CONCAT(UT,__LINE__) = unittest::registerUnitTest([](){
+#define MEX_END_UNIT_TEST }); }
 
 #define MEX_UT MEX_UNIT_TEST
 #define MEX_EUT MEX_END_UNIT_TEST
