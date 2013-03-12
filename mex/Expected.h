@@ -129,6 +129,7 @@
  *    determine the nature of the exception is to throw it, and so repeated
  *    calls to hasException is a poor idea - consider calling throwException
  *    instead and catching it manually.
+ *    TODO: Make variadic!
  */
 
 namespace mex {

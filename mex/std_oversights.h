@@ -21,4 +21,17 @@ std::unique_ptr<T> make_unique(Args&& ...args)
   return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
+template<typename ForwardIt, typename VAL_TYPE, typename Compare>
+pair<ForwardIt, bool> lower_bound_find(ForwardIt first, ForwardIt last, const VAL_TYPE& value, Compare comp) {
+  auto result = std::make_pair(std::lower_bound(first, last, value, comp), true);
+  if(result.first == last || comp(value, *result.first))
+    result.second = false;
+  return result;
+}
+
+template<typename ForwardIt, typename VAL_TYPE>
+pair<ForwardIt, bool> lower_bound_find(ForwardIt first, ForwardIt last, const VAL_TYPE& value) {
+  return lower_bound_find(first, last, value, std::less());
+}
+
 } //namespace mex

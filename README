@@ -1,4 +1,19 @@
 mex
 ===
 
-A collection of C++ libraries and useful code bits, some of which developed by me, others taken or motivated by other authors (credits listed where applicable).
+A collection of C++ libraries and useful code bits, some of which developed by
+me, others taken or motivated by other authors (credits listed where applicable).
+
+Some of these libraries may be redundant unto pieces of other publicly available
+libraries, including Microsoft Parallel Patterns Library, Intel's Thread
+Building Blocks, Facebook's Folly, and future (2014) C++ standard libraries.
+The intent of mex is to produce a largely independent codebase that raises
+the level of abstraction for a wide range of common scenarios to meet the
+following general goals:
+1) Experimentation and proof of concepts for various design alternatives to
+   existing practice.
+2) Personal development with respect to effective API design, programming
+   practices, and high level problems.
+3) A codebase that is written (unless otherwise noted) entirely by me to allow
+   its use under conditions where directly using publicly available code is
+   frowned upon, such as those conditions presented in university courses.
