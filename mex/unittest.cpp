@@ -1,23 +1,46 @@
 
 #include "unittest.h"
 
+#include <iostream>
+#include <exception>
+
+using std::cerr;
+using std::endl;
+using std::begin;
+using std::end;
 using std::vector;
+using std::exception;
+using std::runtime_error;
 
 namespace unittest {
+  namespace detail {
+    vector<unitTestFunction>& unitTests() {
+      static vector<unitTestFunction> value;
+      return value;
+    }
 
-vector<mex_unitTestFunction> mex_unitTests{};
+    bool registerUnitTest(UnitTestFunction func) {
+      unitTests().push_back(func);
+      return true;
+    }
+  } //namespace detail
 
-bool registerUnitTest(mex_unitTestFunction func) {
-  mex_unitTests.push_back(func);
-  return true;
-}
+  ExpectationFailed::ExpectationFailed() : runtime_error("Expectation failed") {}
 
+  void expect_true(bool condition) {
+    if (!condition) {
+      throw ExpectationFailed{};
+    }
+  }
 
-void runUnitTests() {
+  void runUnitTests() {
 #ifdef MEX_RUN_UNIT_TESTS
-  for(auto& test : mex_unitTests)
-    test();
+    //Reverse order to promote top-down coding style and have lower level tests
+    //get called first.
+    for(auto itr = detail::unitTests().rbegin(); itr != detail::unitTests().rend(); ++itr) {
+      (*itr)();
+    }
 #endif
-}
+  }
 
 } //namespace unittest

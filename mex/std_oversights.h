@@ -1,4 +1,9 @@
 
+#pragma once
+
+#include <string>
+#include <memory>
+
 /*
   *********************************OVERVIEW*************************************
  * This class provides several utility functions that Herb Sutter listed as being
@@ -14,15 +19,15 @@ auto cbegin(const T& t)->decltype(t.cbegin()) { return t.cbegin(); }
 template<class T>
 auto cend(const T& t)->decltype(t.cend()) { return t.cend(); }
 
+std::string operator"" _s (const char* cstr, std::size_t sz);
 
 template<typename T, typename ...Args>
-std::unique_ptr<T> make_unique(Args&& ...args)
-{
+std::unique_ptr<T> make_unique(Args&& ...args) {
   return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
 template<typename ForwardIt, typename VAL_TYPE, typename Compare>
-pair<ForwardIt, bool> lower_bound_find(ForwardIt first, ForwardIt last, const VAL_TYPE& value, Compare comp) {
+std::pair<ForwardIt, bool> lower_bound_find(ForwardIt first, ForwardIt last, const VAL_TYPE& value, Compare comp) {
   auto result = std::make_pair(std::lower_bound(first, last, value, comp), true);
   if(result.first == last || comp(value, *result.first))
     result.second = false;
@@ -30,8 +35,8 @@ pair<ForwardIt, bool> lower_bound_find(ForwardIt first, ForwardIt last, const VA
 }
 
 template<typename ForwardIt, typename VAL_TYPE>
-pair<ForwardIt, bool> lower_bound_find(ForwardIt first, ForwardIt last, const VAL_TYPE& value) {
-  return lower_bound_find(first, last, value, std::less());
+std::pair<ForwardIt, bool> lower_bound_find(ForwardIt first, ForwardIt last, const VAL_TYPE& value) {
+  return lower_bound_find(first, last, value, std::less<VAL_TYPE>());
 }
 
 } //namespace mex
