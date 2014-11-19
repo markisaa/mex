@@ -18,11 +18,12 @@
  * documentation not including the overview and first code example are
  * authored by Mark Isaacson.
  * I make no claim to ownership of the 'original content', whose rights are
- * under the control of Andrei Alexandrescu. Further - all of Mark's changes
- * and documentation are presented "as-is" without any guarantee of
- * correctness or support. You may consider these alterations as being
- * available under the same legal restrictions and terms as the
- * 'original content'.
+ * under the control of Andrei Alexandrescu and is used with permission.
+ * Further - all of Mark's changes and documentation are presented "as-is"
+ * without any guarantee of correctness or support. You may consider these
+ * alterations as being available under the legal restrictions and terms
+ * given by the union of the requirements under the 'original content' and
+ * this Mex's ISC license.
  *
  *
  * This class is meant to enable a cleaner, more versatile, mode of error
