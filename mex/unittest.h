@@ -27,16 +27,19 @@ MEX_END_UNIT_TEST
 *
 * Running unit tests:
 *
-* The unit testing suite can be ran via the runUnitTests function if and only if
-* the program has been compiled with the UNIT_TEST symbol defined.
-* To define the UNIT_TEST symbol, add -DUNIT_TEST to your g++ invocation(s):
-g++ -DUNIT_TEST -std=c++11 foo.cpp
+* Just call unittest::runUnitTests();
+*
+* You may find it useful to wrap that call to facilitate *conditionally*
+* running unit tests depending on a symbol being passed to the compiler:
 
-* This macro makes it convenient to always call unittest::runUnitTests() as the first
-* line of main, knowing it will only be run when intended.
+#ifdef UNIT_TEST
+  unittest::runUnitTests();
+#endif
+*
+* And then either passing or not passing -DUNIT_TEST to your compiler.
 *
 *
-* Example program:
+* Full example program:
 
 int main() {
   unittest::runUnitTests();
@@ -54,12 +57,6 @@ MEX_UNIT_TEST
 MEX_END_UNIT_TEST
 
 */
-
-
-
-#ifdef UNIT_TEST
-#define MEX_RUN_UNIT_TESTS
-#endif
 
 #define MEX_UT_DETAIL_CONCAT_(a, b) a##b
 #define MEX_UT_DETAIL_CONCAT(a, b) MEX_UT_DETAIL_CONCAT_(a, b)

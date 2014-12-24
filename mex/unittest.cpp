@@ -14,8 +14,8 @@ using std::runtime_error;
 
 namespace unittest {
   namespace detail {
-    vector<unitTestFunction>& unitTests() {
-      static vector<unitTestFunction> value;
+    vector<UnitTestFunction>& unitTests() {
+      static vector<UnitTestFunction> value;
       return value;
     }
 
@@ -34,13 +34,11 @@ namespace unittest {
   }
 
   void runUnitTests() {
-#ifdef MEX_RUN_UNIT_TESTS
     //Reverse order to promote top-down coding style and have lower level tests
     //get called first.
     for(auto itr = detail::unitTests().rbegin(); itr != detail::unitTests().rend(); ++itr) {
       (*itr)();
     }
-#endif
   }
 
 } //namespace unittest
